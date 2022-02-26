@@ -12,24 +12,24 @@
 #define CONTINUE_CODE 0
 #define MAX_LINE_LEN 100
 
-node* commandParser(char* userInput, int* exit, listHead* list)
+void commandParser(char* userInput, int* exit, listHead* list)
 {
 	int i, j;
 
 	if (strstr(userInput, ADD_END_STR) != NULL)
 	{
 		sscanf(userInput, "add_end %d", &i);
-		return add_end(i, list);
+		add_end(i, list);
 	}
 	else if (strstr(userInput, ADD_START_STR) != NULL)
 	{
 		sscanf(userInput, "add_start %d", &i);
-		return add_start(i, list);
+		add_start(i, list);
 	}
 	else if (strstr(userInput, ADD_AFTER_STR) != NULL)
 	{
 		sscanf(userInput, "add_after %d %d", &i, &j);
-		return add_after(i, j, list, exit);
+		add_after(i, j, list, exit);
 	}
 	else if (strstr(userInput, INDEX_STR) != NULL)
 	{
@@ -39,7 +39,7 @@ node* commandParser(char* userInput, int* exit, listHead* list)
 	else if (strstr(userInput, DEL_STR) != NULL)
 	{
 		sscanf(userInput, "del %d", &i);
-		return del(i, list, exit);
+		del(i, list, exit);
 	}
 
 	else if (strstr(userInput, EXIT_STR) != NULL)
@@ -48,7 +48,6 @@ node* commandParser(char* userInput, int* exit, listHead* list)
 	else if (strstr(userInput, PRINT_STR) != NULL)
 		print_list(list);
 
-	return list;
 }
 
 void stringToLowercase(char* str)
