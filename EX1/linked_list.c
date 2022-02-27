@@ -54,15 +54,28 @@ int findValIndex(int i, listHead* list)
 
 node* add_end(int i, listHead* list)
 {
+	if (list->len == 0) {
+		return add_start(i, list);
+	}
 	node* lastItem = findItemByIndex((list->len - 1), list);
-	list->head++;
+	list->len++;
 	return allocateNode(i, lastItem, NULL);
 }
 
 
 node* add_start(int i, listHead* list)
 {
-	node* res = allocateNode(i, NULL, list);
+	node* res;
+	if (list->len == 0) {
+		res = malloc(sizeof(node));
+		res->val = i;
+		res->next = NULL;
+		res->previous = NULL;
+		list->len++;
+		list->head = res;
+		return res;
+	}
+	res = allocateNode(i, NULL, list->head);
 	list->head = res;
 	list->len++;
 	return res;
@@ -106,6 +119,7 @@ node* del(int i, listHead* list, int* exit)
 		list->head = toDel->next;
 		list->head->previous = NULL;
 		free(toDel);
+		list->len--;
 		return list->head;
 	}
 
@@ -121,6 +135,8 @@ node* del(int i, listHead* list, int* exit)
 		delNext->previous = delPrev;
 	}
 	free(toDel);
+	list->len--;
+
 	return delNext;
 }
 

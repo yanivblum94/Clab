@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "linked_list.h"
-
 #define ADD_END_STR "add_end"
 #define ADD_START_STR "add_start"
 #define ADD_AFTER_STR "add_after"
