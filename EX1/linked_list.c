@@ -117,7 +117,8 @@ node* del(int i, listHead* list, int* exit)
 	if(i == 0){//we delete the first node
 		toDel = list->head;
 		list->head = toDel->next;
-		list->head->previous = NULL;
+		if(list->head != NULL)
+			list->head->previous = NULL;
 		free(toDel);
 		list->len--;
 		return list->head;
@@ -189,7 +190,6 @@ void freeAllocatedListMemory(listHead* list)
 		free(temp);
 		temp = next;
 	}
-	free(list);
 }
 
 listHead* initList() {

@@ -73,4 +73,5 @@ int main(){
 	listHead* list = initList();
 	commandInputLoop(list);
 	freeAllocatedListMemory(list);
+	return SUCCESS_CODE;
 }
