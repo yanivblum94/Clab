@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "linked_list.h"
 
-#define INT_NOT_FOUND_CODE -1
+#define VAL_NOT_FOUND_CODE -1
 #define EMPTY_LIST_INDICATOR 1
 #define MAX_INT_STRING_SIZE 12
 #define SPACING_STRING_SIZE 3
@@ -17,8 +17,6 @@ node* allocateNode(int i, node* prevNode, node* nextNode)
 	if (prevNode != NULL) prevNode->next = newNode;
 	if (nextNode != NULL) nextNode->previous = newNode;
 
-	while (newNode->previous != NULL)
-		newNode = newNode->previous;
 	return newNode;
 }
 
@@ -39,7 +37,7 @@ node* findItemByIndex(int i, listHead* list)
 
 int findValIndex(int i, listHead* list)
 {
-	int res = INT_NOT_FOUND_CODE;
+	int res = VAL_NOT_FOUND_CODE;
 
 	node* temp = list->head;
 
@@ -49,51 +47,48 @@ int findValIndex(int i, listHead* list)
 		if (temp->val == i) return res;
 		temp = temp->next;
 	}
-	return INT_NOT_FOUND_CODE;
+	return VAL_NOT_FOUND_CODE;
 }
 
-node* add_end(int i, listHead* list)
+void add_end(int i, listHead* list)
 {
 	if (list->len == 0) {
-		return add_start(i, list);
+		add_start(i, list);
+		return;
 	}
 	node* lastItem = findItemByIndex((list->len - 1), list);
 	list->len++;
-	return allocateNode(i, lastItem, NULL);
+	allocateNode(i, lastItem, NULL);
 }
 
 
-node* add_start(int i, listHead* list)
+void add_start(int i, listHead* list)
 {
 	node* res;
 	if (list->len == 0) {
-		res = malloc(sizeof(node));
-		res->val = i;
-		res->next = NULL;
-		res->previous = NULL;
+		res = allocateNode(i, NULL, NULL);
 		list->len++;
 		list->head = res;
-		return res;
+		return;
 	}
 	res = allocateNode(i, NULL, list->head);
 	list->head = res;
 	list->len++;
-	return res;
 }
 
 
-node* add_after(int i, int j, listHead* list, int* exit)
+void add_after(int i, int j, listHead* list, int* exit)
 {
 	int jIndex = findValIndex(j, list);
-	if (jIndex == INT_NOT_FOUND_CODE)
+	if (jIndex == VAL_NOT_FOUND_CODE)
 	{
 		printf("ERROR: index 'j' was not found.\n");
 		*exit = EXIT_CODE;
-		return NULL;
+		return;
 	}
 	node* jNode = findItemByIndex(jIndex, list);
 	list->len++;
-	return allocateNode(i, jNode, jNode->next);
+	allocateNode(i, jNode, jNode->next);
 }
 
 
@@ -104,14 +99,14 @@ void index(int i, listHead* list)
 
 
 
-node* del(int i, listHead* list, int* exit)
+void del(int i, listHead* list, int* exit)
 {
 	node* toDel, *delPrev, *delNext;
 	if (i >= list->len)
 	{
 		printf("ERROR: index is too large.\n");
 		*exit = EXIT_CODE;
-		return NULL;
+		return;
 	}
 
 	if(i == 0){//we delete the first node
@@ -121,7 +116,7 @@ node* del(int i, listHead* list, int* exit)
 			list->head->previous = NULL;
 		free(toDel);
 		list->len--;
-		return list->head;
+		return;
 	}
 
 	toDel = findItemByIndex(i, list);
@@ -138,11 +133,10 @@ node* del(int i, listHead* list, int* exit)
 	free(toDel);
 	list->len--;
 
-	return delNext;
 }
 
 
-int print_list(listHead* list)
+void print_list(listHead* list)
 {
 	char* listString, intString[MAX_INT_STRING_SIZE];
 	listString = (char*) malloc((list->len * MAX_INT_STRING_SIZE + SPACING_STRING_SIZE) * sizeof(char));
@@ -174,7 +168,6 @@ int print_list(listHead* list)
 
 	printf("%s\n", listString);
 	free(listString);
-	return SUCCESS_CODE;
 }
 
 

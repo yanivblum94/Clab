@@ -1,7 +1,6 @@
 #ifndef LINKED_LIST
 #define LINKED_LIST
 
-#define SUCCESS_CODE 0
 #define EXIT_CODE 1
 
 typedef struct
@@ -17,13 +16,12 @@ typedef struct {
 	int len;
 }listHead;
 
-node* add_end(int i, listHead* list);
-node* add_start(int i, listHead* list);
-node* add_after(int i, int j, listHead* list, int* exit);
+void add_end(int i, listHead* list);
+void add_start(int i, listHead* list);
+void add_after(int i, int j, listHead* list, int* exit);
 void index(int i, listHead* list);
-node* del(int i, listHead* list, int* exit);
-int print_list(listHead* list);
-
+void del(int i, listHead* list, int* exit);
+void print_list(listHead* list);
 void freeAllocatedListMemory(listHead* list);
 listHead* initList();
 

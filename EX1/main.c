@@ -9,6 +9,7 @@
 #define PRINT_STR "print"
 #define EXIT_STR "exit"
 #define CONTINUE_CODE 0
+#define SUCCESS_CODE 0
 #define MAX_LINE_LEN 100
 
 void commandParser(char* userInput, int* exit, listHead* list)
@@ -56,22 +57,17 @@ void stringToLowercase(char* str)
 		str[i] = tolower(str[i]);
 }
 
-void commandInputLoop(listHead* list)
-{
+
+int main(){
 	char userInput[MAX_LINE_LEN] = "";
 	int exit = CONTINUE_CODE;
-
+	listHead* list = initList();
 	while (exit == CONTINUE_CODE)
 	{
 		gets(userInput);
 		stringToLowercase(userInput);
 		commandParser(userInput, &exit, list);
 	}
-}
-
-int main(){
-	listHead* list = initList();
-	commandInputLoop(list);
 	freeAllocatedListMemory(list);
 	return SUCCESS_CODE;
 }
