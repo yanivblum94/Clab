@@ -25,7 +25,7 @@ bool exp_in_line(char* line, char* exp) {
 	return false;
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
 	FILE* input_file = NULL;
 	char* line_buf = NULL;
 	char* file_name, exp;
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
 	validate_args(argc);
 	file_name = argv[2];
-	exp = argv[3];
+	exp = argv[1];
 
 	input_file = fopen(file_name, "r");
 	if (input_file == NULL) {
