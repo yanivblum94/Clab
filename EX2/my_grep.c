@@ -25,7 +25,7 @@ bool exp_in_line(char* line, char* exp) {
 	return false;
 }
 
-int main(int argc, char* argv) {
+int main(int argc, char** argv) {
 	FILE* input_file = NULL;
 	char* line_buf = NULL;
 	char* file_name, exp;
