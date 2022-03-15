@@ -6,6 +6,15 @@
 #include <stdbool.h>
 #include <string.h>
 
+#define MINUS_A "-A"
+#define MINUS_B "-b"
+#define MINUS_C "-c"
+#define MINUS_I "-i"
+#define MINUS_N "-n"
+#define MINUS_V "-v"
+#define MINUS_X "-x"
+#define MINUS_E "-E"
+
 typedef struct Grep_struct {
 	bool is_A;
 	int A_num;

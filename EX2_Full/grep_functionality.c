@@ -2,36 +2,36 @@
 
 void init_grep(int argc, char* argv[], Grep* grep) {
 	for (int i = 1; i < argc-1; i++) {
-		if (strcmp(argv[i], "-A") == 0) {
+		if (strcmp(argv[i], MINUS_A) == 0) {
 			grep->is_A = true;
 			grep->A_num = atoi(argv[++i]);
 			continue;
 		}
-		else if(strcmp(argv[i], "-b") == 0) {
+		else if(strcmp(argv[i], MINUS_B) == 0) {
 			grep->is_b = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-c") == 0) {
+		else if (strcmp(argv[i], MINUS_C) == 0) {
 			grep->is_c = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-i") == 0) {
+		else if (strcmp(argv[i], MINUS_I) == 0) {
 			grep->is_i = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-n") == 0) {
+		else if (strcmp(argv[i], MINUS_N) == 0) {
 			grep->is_n = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-v") == 0) {
+		else if (strcmp(argv[i], MINUS_V) == 0) {
 			grep->is_v = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-x") == 0) {
+		else if (strcmp(argv[i], MINUS_X) == 0) {
 			grep->is_x = true;
 			continue;
 		}
-		else if (strcmp(argv[i], "-E") == 0) {
+		else if (strcmp(argv[i], MINUS_E) == 0) {
 			grep->is_E = true;
 			grep->E_exp = argv[++i];
 			continue;
