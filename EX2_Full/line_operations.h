@@ -9,4 +9,6 @@
 bool is_exp_in_line(char* line, char* exp);
 
 void to_lower(char* line);
-#endif // !LINE_OPERATIONS_H
+
+int read_line(char* line_buf, FILE* file, bool is_file);
+#endif 

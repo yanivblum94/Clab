@@ -18,3 +18,10 @@ void to_lower(char* str) {
 	for (i = 0; i < strlen(str); i++)
 		str[i] = tolower(str[i]);
 }
+
+int read_line(char* line_buf, FILE* file, bool is_file) {
+	size_t line_buf_len = 0;
+	if(is_file)
+		return getline(&line_buf, &line_buf_len, file);
+	return getline(&line_buf, &line_buf_len, stdin);
+}

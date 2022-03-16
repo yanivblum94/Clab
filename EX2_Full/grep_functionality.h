@@ -25,12 +25,12 @@ typedef struct Grep_struct {
 	bool is_v;
 	bool is_x;
 	bool is_E;
-	char* E_exp;
-	char* file_name;
+	char* exp;
 } Grep;
 
 void init_grep(int argc, char *argv[], Grep* grep);
 
+void handle_grep(char* line_buf, bool exp_in_line, Grep* grep);
 #endif 
 
 

@@ -33,8 +33,22 @@ void init_grep(int argc, char* argv[], Grep* grep) {
 		}
 		else if (strcmp(argv[i], MINUS_E) == 0) {
 			grep->is_E = true;
-			grep->E_exp = argv[++i];
+			grep->exp = argv[++i];
 			continue;
 		}
+		else {
+			grep->exp = argv[i];
+		}
+	}
+}
+
+
+void handle_grep(char* line_buf, bool exp_in_line, Grep* grep) {
+	if (exp_in_line) {
+		printf("%s", line_buf);
+	}
+	else {
+		if (grep->is_v)
+			printf("%s", line_buf);
 	}
 }
