@@ -19,9 +19,18 @@ void to_lower(char* str) {
 		str[i] = tolower(str[i]);
 }
 
-int read_line(char* line_buf, FILE* file, bool is_file) {
+ssize_t read_line(char* line_buf, FILE* file, bool is_file) {
 	size_t line_buf_len = 0;
-	if(is_file)
-		return getline(&line_buf, &line_buf_len, file);
-	return getline(&line_buf, &line_buf_len, stdin);
+	ssize_t res = 0;
+	char* temp = NULL;
+	printf("in read line\n");
+	if (is_file)
+		res = getline(&temp, &line_buf_len, file);
+	else
+		res = getline(&temp, &line_buf_len, stdin);
+	strcpy(line_buf, temp);
+	printf("%s", line_buf);
+	fflush(stdout);
+	free(temp);
+	return res;
 }

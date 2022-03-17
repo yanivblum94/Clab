@@ -1,13 +1,24 @@
 #include "grep_functionality.h"
 
 void init_grep(int argc, char* argv[], Grep* grep) {
-	for (int i = 1; i < argc-1; i++) {
+	int i;
+	grep->is_A = false;
+	grep->A_num = 0;
+	grep->is_b = false;
+	grep->is_c = false;
+	grep->is_i = false;
+	grep->is_n = false;
+	grep->is_v = false;
+	grep->is_x = false;
+	grep->is_E = false;
+	grep->exp = NULL;
+	for (i = 1; i < argc - 1; i++) {
 		if (strcmp(argv[i], MINUS_A) == 0) {
 			grep->is_A = true;
 			grep->A_num = atoi(argv[++i]);
 			continue;
 		}
-		else if(strcmp(argv[i], MINUS_B) == 0) {
+		else if (strcmp(argv[i], MINUS_B) == 0) {
 			grep->is_b = true;
 			continue;
 		}
