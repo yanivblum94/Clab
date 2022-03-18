@@ -1,6 +1,6 @@
 #include "grep_functionality.h"
 
-void init_grep(int argc, char* argv[], Grep* grep) {
+void init_grep(int argc, char* argv[], Grep* grep, bool is_file) {
 	int i;
 	grep->is_A = false;
 	grep->A_num = 0;
@@ -11,8 +11,9 @@ void init_grep(int argc, char* argv[], Grep* grep) {
 	grep->is_v = false;
 	grep->is_x = false;
 	grep->is_E = false;
-	grep->exp = NULL;
-	for (i = 1; i < argc - 1; i++) {
+	grep->argv_exp = -1;
+	for (i = 1; i < argc; i++) {
+		//printf("%s\n",  argv[i]);
 		if (strcmp(argv[i], MINUS_A) == 0) {
 			grep->is_A = true;
 			grep->A_num = atoi(argv[++i]);
@@ -44,11 +45,14 @@ void init_grep(int argc, char* argv[], Grep* grep) {
 		}
 		else if (strcmp(argv[i], MINUS_E) == 0) {
 			grep->is_E = true;
-			grep->exp = argv[++i];
+			grep->argv_exp = ++i;
+			continue;
+		}
+		else if (is_file && i == argc - 1) {
 			continue;
 		}
 		else {
-			grep->exp = argv[i];
+			grep->argv_exp = i;
 		}
 	}
 }

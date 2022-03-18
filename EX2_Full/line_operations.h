@@ -10,5 +10,5 @@ bool is_exp_in_line(char* line, char* exp);
 
 void to_lower(char* line);
 
-ssize_t read_line(char* line_buf, FILE* file, bool is_file);
+ssize_t read_line(char** line_buf, FILE* file, bool is_file);
 #endif 
