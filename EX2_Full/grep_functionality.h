@@ -28,9 +28,9 @@ typedef struct Grep_struct {
 	int argv_exp;
 } Grep;
 
-void init_grep(int argc, char* argv[], Grep* grep, bool is_file);
+void init_grep(int argc, char *argv[], Grep* grep, bool is_file);
 
-void handle_grep(char* line_buf, bool exp_in_line, Grep* grep);
+void handle_grep(char* line_buf, bool exp_in_line, Grep* grep, int lines_count, int bytes_count);
 #endif 
 
 

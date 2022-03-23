@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include "grep_functionality.h"
 
-bool is_exp_in_line(char* line, char* exp);
+bool is_exp_in_line(char* line, char* exp, Grep* grep);
 
 void to_lower(char* line);
 
