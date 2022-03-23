@@ -1,0 +1,97 @@
+#! /usr/bin/env tcsh
+
+./my_grep bla ~nimrodav/grep_tests/bla | diff ~nimrodav/grep_tests/bla -
+
+valgrind --quiet --leak-check=yes ./my_grep bla ~nimrodav/grep_tests/bla | diff ~nimrodav/grep_tests/bla -
+
+#! /usr/bin/env tcsh
+
+./my_grep a ~nimrodav/grep_tests/emptyfile | diff ~nimrodav/grep_tests/emptyfile -
+
+valgrind --quiet --leak-check=yes ./my_grep a ~nimrodav/grep_tests/emptyfile | diff ~nimrodav/grep_tests/emptyfile -
+
+#! /usr/bin/env tcsh
+
+./my_grep bla ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out3 -
+
+valgrind --quiet --leak-check=yes ./my_grep bla ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out3 -
+
+#! /usr/bin/env tcsh
+
+cat ~nimrodav/grep_tests/3lines | ./my_grep bla | diff ~nimrodav/grep_tests/out3 -
+
+cat ~nimrodav/grep_tests/3lines | valgrind --quiet --leak-check=yes ./my_grep bla | diff ~nimrodav/grep_tests/out3 -
+#! /usr/bin/env tcsh
+
+./my_grep -n -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out5 -
+
+valgrind --quiet --leak-check=yes ./my_grep -n -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out5 -
+#! /usr/bin/env tcsh
+
+./my_grep -A 2 -n -i io ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out6 -
+
+valgrind --quiet --leak-check=yes ./my_grep -A 2 -n -i io ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out6 -
+#! /usr/bin/env tcsh
+
+./my_grep -b -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out7 -
+
+valgrind --quiet --leak-check=yes ./my_grep -b -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out7 -
+#! /usr/bin/env tcsh
+
+./my_grep -c -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out8 -
+
+valgrind --quiet --leak-check=yes ./my_grep -c -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out8 -
+#! /usr/bin/env tcsh
+
+./my_grep -v -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out9 -
+
+valgrind --quiet --leak-check=yes ./my_grep -v -i -E 'o\.pdf' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out9 -
+#! /usr/bin/env tcsh
+
+./my_grep -x bla ~nimrodav/grep_tests/in10 | diff ~nimrodav/grep_tests/out10 -
+
+valgrind --quiet --leak-check=yes ./my_grep -x bla ~nimrodav/grep_tests/in10 | diff ~nimrodav/grep_tests/out10 -
+#! /usr/bin/env tcsh
+
+./my_grep -E '(bla|bli)' ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out11 -
+
+valgrind --quiet --leak-check=yes ./my_grep -E '(bla|bli)' ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out11 -
+#! /usr/bin/env tcsh
+
+./my_grep -E '(bla|li)' ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out11 -
+
+valgrind --quiet --leak-check=yes ./my_grep -E '(bla|li)' ~nimrodav/grep_tests/3lines | diff ~nimrodav/grep_tests/out11 -
+#! /usr/bin/env tcsh
+
+./my_grep -E 'r(i|A).[y-z]\.' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out13 -
+
+valgrind --quiet --leak-check=yes ./my_grep -E 'r(i|A).[y-z]\.' ~nimrodav/grep_tests/2013.html | diff ~nimrodav/grep_tests/out13 -
+#! /usr/bin/env tcsh
+
+cat ~nimrodav/grep_tests/in14 | ./my_grep -A 2 my_grep | diff ~nimrodav/grep_tests/out14 -
+
+cat ~nimrodav/grep_tests/in14 | valgrind --quiet --leak-check=yes ./my_grep -A 2 my_grep | diff ~nimrodav/grep_tests/out14 -
+#! /usr/bin/env tcsh
+
+./my_grep -E '(ab|a).(d|cd)[x-z]' ~nimrodav/grep_tests/in15 | diff ~nimrodav/grep_tests/out15 -
+valgrind --quiet --leak-check=yes ./my_grep -E '(ab|a).(d|cd)[x-z]' ~nimrodav/grep_tests/in15 | diff ~nimrodav/grep_tests/out15 -
+#! /usr/bin/env tcsh
+
+./my_grep -E '\[(1|)[0-9]\]' ~nimrodav/grep_tests/in16 | diff ~nimrodav/grep_tests/out16 -
+valgrind --quiet --leak-check=yes ./my_grep -E '\[(1|)[0-9]\]' ~nimrodav/grep_tests/in16 | diff ~nimrodav/grep_tests/out16 -
+#! /usr/bin/env tcsh
+
+./my_grep -E '\[(1|)[0-9]\\\]' ~nimrodav/grep_tests/in17 | diff ~nimrodav/grep_tests/out17 -
+valgrind --quiet --leak-check=yes ./my_grep -E '\[(1|)[0-9]\\\]' ~nimrodav/grep_tests/in17 | diff ~nimrodav/grep_tests/out17 -
+#! /usr/bin/env tcsh
+
+./my_grep -x -E '(ab|a).(d|cd)[x-z]' ~nimrodav/grep_tests/in18 | diff ~nimrodav/grep_tests/out18 -
+valgrind --quiet --leak-check=yes ./my_grep -x -E '(ab|a).(d|cd)[x-z]' ~nimrodav/grep_tests/in18 | diff ~nimrodav/grep_tests/out18 -
+#! /usr/bin/env tcsh
+
+./my_grep -i -E '(Ab|a).(d|cD)[X-Z]' ~nimrodav/grep_tests/in19 | diff ~nimrodav/grep_tests/out19 -
+valgrind --quiet --leak-check=yes ./my_grep -i -E '(Ab|a).(d|cD)[X-Z]' ~nimrodav/grep_tests/in19 | diff ~nimrodav/grep_tests/out19 -
+#! /usr/bin/env tcsh
+
+./my_grep -x -i -E '(Ab|a).(d|cD)[X-Z]' ~nimrodav/grep_tests/in20 | diff ~nimrodav/grep_tests/out20 -
+valgrind --quiet --leak-check=yes ./my_grep -x -i -E '(Ab|a).(d|cD)[X-Z]' ~nimrodav/grep_tests/in20 | diff ~nimrodav/grep_tests/out20 -

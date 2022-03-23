@@ -18,6 +18,7 @@
 typedef struct Grep_struct {
 	bool is_A;
 	int A_num;
+	int A_num_counter;
 	bool is_b;
 	bool is_c;
 	bool is_i;

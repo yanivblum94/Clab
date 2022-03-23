@@ -1,27 +1,37 @@
 #include "line_operations.h"
 
+bool is_exp_in_line_minus_x(char* line, char* exp, Grep* grep) {
+	char* ptr = line;
+	ptr += strlen(exp);
+	if ((strncmp(line, exp, strlen(exp)) == 0) && (*ptr == '\n' || *ptr == '\0')) {
+		if(grep->is_v)
+			return false;
+		return true;
+	}
+	if (grep->is_v)
+		return true;
+	return false;
+}
+
 bool is_exp_in_line(char* line, char* exp, Grep* grep) {
   if(line == NULL || exp == NULL)
     return false;
-  if(grep->is_x){
-    if(strncmp(line, exp, strlen(exp) == 0))
-      return true;
-   return false;
-   }  
+  if (grep->is_x)
+	  return is_exp_in_line_minus_x(line, exp, grep);
 	char* search_ptr = line;
 	int lim = strlen(line) - strlen(exp);
 	int count = 0;
 	while ((*search_ptr != '\0') && (count <= lim)) {
 		if (strncmp(search_ptr, exp, strlen(exp)) == 0){
-         if(grep->is_v)
-           return false;
+			if(grep->is_v)
+				return false;
 			return true;
-      }
+         }
 		search_ptr++;
 		count++;
 	}
- if(grep->is_v)
-   return true;
+	if(grep->is_v)
+		return true;
 	return false;
 }
 
