@@ -5,6 +5,7 @@ void init_grep(int argc, char* argv[], Grep* grep, bool is_file) {
 	grep->is_A = false;
 	grep->A_num = 0;
 	grep->A_num_counter = 0;
+	grep->c_counter = 0;
 	grep->is_b = false;
 	grep->is_c = false;
 	grep->is_i = false;
@@ -43,31 +44,36 @@ void init_grep(int argc, char* argv[], Grep* grep, bool is_file) {
 
 
 void handle_grep(char* line_buf, bool exp_in_line, Grep* grep, int lines_count, int bytes_count) {
-	if (exp_in_line) {
+	if ((exp_in_line && !grep->is_v) || (!exp_in_line && grep->is_v)) {
 		if (grep->is_A) 
 			grep->A_num_counter = grep->A_num;
-		if(grep->is_n)
-		  printf("%d:", lines_count);
-		if(grep->is_b)
-		  printf("%d:", bytes_count);
-		if(!grep->is_c)
+		if (!grep->is_c) {
+			if (grep->is_n)
+				printf("%d:", lines_count);
+			if (grep->is_b)
+				printf("%d:", bytes_count);
 			printf("%s", line_buf);
+		}
 		else
-			printf("%d:", lines_count);
+			grep->c_counter++;
    }
 	else {
 		if (grep->is_A && grep->A_num_counter > 0) {
-			if (grep->is_n)
-				printf("%d-", lines_count);
-			if (grep->is_b)
-				printf("%d-", bytes_count);
-			if (!grep->is_c)
+			if (!grep->is_c) {
+				if (grep->is_n)
+					printf("%d-", lines_count);
+				if (grep->is_b)
+					printf("%d-", bytes_count);
 				printf("%s", line_buf);
+			}
 			else
-				printf("%d-", lines_count);
+				grep->c_counter++;
 			grep->A_num_counter--;
-			if(grep->A_num_counter == 0)
-				printf("--\n");
 		}
 	}
+}
+
+void hanlde_minus_c(Grep* grep) {
+	if (grep->is_c)
+		printf("%d\n", grep->c_counter);
 }

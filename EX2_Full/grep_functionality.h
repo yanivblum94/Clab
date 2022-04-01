@@ -21,6 +21,7 @@ typedef struct Grep_struct {
 	int A_num_counter;
 	bool is_b;
 	bool is_c;
+	int c_counter;
 	bool is_i;
 	bool is_n;
 	bool is_v;
@@ -32,6 +33,8 @@ typedef struct Grep_struct {
 void init_grep(int argc, char *argv[], Grep* grep, bool is_file);
 
 void handle_grep(char* line_buf, bool exp_in_line, Grep* grep, int lines_count, int bytes_count);
+
+void hanlde_minus_c(Grep* grep);
 #endif 
 
 
