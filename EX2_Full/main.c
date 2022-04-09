@@ -1,9 +1,13 @@
-//#pragma warning(disable : 4996)
 #include "grep_functionality.h"
 #include "line_operations.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MINIMUM_PARAMS_FOR_FILE 3
 
 bool contains_file_name(int argc, char* argv[], Grep* grep) {
-	if(argc < 3 || grep->argv_exp == argc - 1)
+	if(argc < MINIMUM_PARAMS_FOR_FILE || grep->argv_exp == argc - 1)
 		return false;
 	if (strcmp(argv[argc - 1], MINUS_B) == 0 || strcmp(argv[argc - 1], MINUS_C) == 0)
 		return false;

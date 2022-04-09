@@ -1,10 +1,8 @@
 #ifndef GREP_FUNCTIONALITY_H
 #define GREP_FUNCTIONALITY_H
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
+
 
 #define MINUS_A "-A"
 #define MINUS_B "-b"
@@ -19,6 +17,7 @@ typedef struct Grep_struct {
 	bool is_A;
 	int A_num;
 	int A_num_counter;
+	bool first_A;
 	bool is_b;
 	bool is_c;
 	int c_counter;

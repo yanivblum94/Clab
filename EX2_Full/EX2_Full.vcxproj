@@ -22,6 +22,7 @@
     <ClCompile Include="grep_functionality.c" />
     <ClCompile Include="line_operations.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grep_functionality.h" />
