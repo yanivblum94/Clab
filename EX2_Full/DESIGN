@@ -1,0 +1,3 @@
+main: The main loop logic(reading one line at a time, cheking if it fits the exp and prints if necessary) init + free
+line_operations: all the operations relted to one line - matching, to lower and reading
+grep_funcionality: all the functionality of the grep - init of struct and handling the prints according to instructions

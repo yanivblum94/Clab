@@ -50,9 +50,9 @@ void init_grep(int argc, char* argv[], Grep* grep, bool is_file) {
 void handle_grep(char* line_buf, bool exp_in_line, Grep* grep, int lines_count, int bytes_count) {
 	if ((exp_in_line && !grep->is_v) || (!exp_in_line && grep->is_v)) {
 		if (grep->is_A) {
-			grep->A_num_counter = grep->A_num;
-			if (grep->first_A)
+			if (grep->first_A && grep->A_num_counter == 0)
 				printf("--\n");
+			grep->A_num_counter = grep->A_num;
 			grep->first_A = true;
 		}
 		if (!grep->is_c) {

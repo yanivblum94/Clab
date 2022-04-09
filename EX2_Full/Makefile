@@ -1,7 +1,7 @@
 all: my_grep
 
 my_grep: main.o line_operations.o grep_functionality.o
-	gcc -o my_grep main.o line.o grep_func.o
+	gcc -o my_grep main.o line_operations.o grep_functionality.o
 
 main.o: main.c line_operations.h grep_functionality.h
 	gcc -c main.c
