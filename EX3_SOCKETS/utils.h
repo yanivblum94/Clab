@@ -1,8 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define SERVERS_PORT_FILE "server_port"
-#define HTTP_PORT_FILE "http_port"
 #define SERVER_SOCKET_TYPE 'c'
 
 int GetValidPort();
