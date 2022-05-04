@@ -38,7 +38,7 @@ int InitSocket(char sockType)
   bool newPort = true;
   sock = CreateSocket();
   if (sock == NO_BINDING) {
-      return NO_BINDING;
+    return NO_BINDING;
   }
   do {
     port = GetValidPort();

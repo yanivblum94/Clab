@@ -17,11 +17,11 @@
 
 bool FindEndMatch(const char* buffer, int indx)
 {
-    if (buffer[indx] == CR_CODE && buffer[indx + 1] == LF_CODE && buffer[indx + 2] == CR_CODE &&
-        buffer[indx + SHIFT_THREE] == LF_CODE) {
-        return true;
-    }
-    return false;
+  if (buffer[indx] == CR_CODE && buffer[indx + 1] == LF_CODE && buffer[indx + 2] == CR_CODE &&
+      buffer[indx + SHIFT_THREE] == LF_CODE) {
+    return true;
+  }
+  return false;
 }
 
 int GetValidPort()
@@ -51,13 +51,13 @@ void WriteOutputPortFile(int port, char sockType)
 
 int CountEndMsgAppearences(const char* buffer, int len)
 {
-    int i, res = 0;
-    for (i = 0; i < len - SHIFT_THREE; i++) {
-        if (FindEndMatch(buffer, i)) {
-            res++;
-        }
+  int i, res = 0;
+  for (i = 0; i < len - SHIFT_THREE; i++) {
+    if (FindEndMatch(buffer, i)) {
+      res++;
     }
-    return res;
+  }
+  return res;
 }
 
 int GetMessageLen(const char* message, int expectedEnds)

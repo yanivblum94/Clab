@@ -1,1 +1,36 @@
-#! /usr/bin/python2.7 -ttfrom socket import*import sysbytes_rec = 100requests_cnt = 0sys.stdout.write("Hello")def read_request(sock) :  received_str = ''  while True :    received_str += sock.recv(bytes_rec)    if received_str.find('\r\n\r\n') >= 0 :      break  if received_str.find('/counter') < 20 and received_str.find(' /counter ') > 0 :    return True  return Falsesock = socket()sock.connect('localhost', int(sys.argv[1]))sys.stdout.write("connected to port")end_str = '\r\n\r\n'ans_str = 'HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nContent-Length: 'while True:  sys.stdout.write("inside while")  if read_request(sock) == True :    requests_cnt += 1    response = ans_str + str(len(str(requests_cnt))) + end_str + str(requestsCount) + end_str    sock.send(response)  else:    sock.send('HTTP/1.1 404 Not Found\r\nContent-type: text/html\r\nContent-length: 113\r\n\r\n<html><head><title>Not Found</title></head><body>Sorry, the object you requested was not found.</body></html>\r\n\r\n')
+#!/usr/bin/python2.7 -tt
+from socket import *
+import sys
+
+bytes_to_read = 120
+
+def get_request(sock):
+    msg_from_sock = ''
+
+    while True:
+        msg_from_sock += sock.recv(bytes_to_read)
+        if msg_from_sock.find('\r\n\r\n') >= 0:
+            break
+
+    if msg_from_sock.find('/counter') < 25 and msg_from_sock.find(' /counter ') > 2:
+        return 1
+        
+    return 0
+
+
+sock = socket()
+sock.connect(('localhost', int(sys.argv[1])))
+
+req_counter = 0
+
+while True:
+    if get_request(sock) == 1: 
+        req_counter += 1
+        response = 'HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nContent-Length: '
+        response = response + str(len(str(req_counter))) + '\r\n\r\n' + str(req_counter) +  '\r\n\r\n' 
+        sock.send(response)
+        
+    else: 
+        sock.send('HTTP/1.1 404 Not Found\r\nContent-type: text/html\r\nContent-length: 113\r\n\r\n<html><head><title>Not Found</title></head><body>Sorry, the object you requested was not found.</body></html>\r\n\r\n')
+       
+
