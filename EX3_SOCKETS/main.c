@@ -65,6 +65,5 @@ int main()
     close(client);
     i++;
   }
-
   return SUCCESS_CODE;
 }

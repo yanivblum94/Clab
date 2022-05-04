@@ -36,18 +36,15 @@ int GetValidPort()
 void WriteOutputPortFile(int port, char sockType)
 {
   FILE* fp;
-
   if (sockType == SERVER_SOCKET_TYPE) {
     fp = fopen(SERVERS_PORT_FILE, "w");
   } else {
     fp = fopen(HTTP_PORT_FILE, "w");
   }
-
   if (fp == NULL) {
     printf("ERROR: cannot open file.");
     return;
   }
-
   fprintf(fp, "%d", port);
   fclose(fp);
 }
@@ -66,7 +63,6 @@ int CountEndMsgAppearences(const char* buffer, int len)
 int GetMessageLen(const char* message, int expectedEnds)
 {
   int endsCounter = 0;
-
   for (int i = 0; i < strlen(message) - SHIFT_THREE; i++) {
     if (FindEndMatch(message, i)) {
       endsCounter++;

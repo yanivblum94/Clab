@@ -12,7 +12,6 @@
 bool BindSocket(int port, int sock)
 {
   struct sockaddr_in socket_addr;
-
   socket_addr.sin_family = AF_INET;
   socket_addr.sin_addr.s_addr = INADDR_ANY;
   socket_addr.sin_port = htons(port);
@@ -35,7 +34,6 @@ int CreateSocket()
 
 int InitSocket(char sockType)
 {
-
   int port, sock = NO_BINDING;
   bool newPort = true;
   sock = CreateSocket();
@@ -46,26 +44,19 @@ int InitSocket(char sockType)
     port = GetValidPort();
     newPort = BindSocket(port, sock);
   } while (newPort);
-
   WriteOutputPortFile(port, sockType);
-
   return sock;
 }
 
 void GetMessageFromSocket(int connectedSocket, int expectedEnds, char* buffer)
 {
-
   int bufferLen = 0, recvDataSize, endsCount;
 
   while (endsCount != expectedEnds) {
-
     recvDataSize = recv(connectedSocket, &(buffer[bufferLen]), BUFFER_BLOCK, 0);
     bufferLen += recvDataSize;
-
     endsCount = CountEndMsgAppearences(buffer, bufferLen);
-
     buffer = (char*)realloc(buffer, bufferLen + BUFFER_BLOCK);
   }
-
   return;
 }
